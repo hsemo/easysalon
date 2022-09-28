@@ -1,0 +1,5 @@
+# for repository personal access token
+*.tk
+
+# for other files
+*.txt
