@@ -1,57 +1,51 @@
-body {
+/*--------------------------------------------------------------
+# Login and Registration page css
+--------------------------------------------------------------*/
+
+.f-container {
   display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background: url("../img/hero-bg.jpg") top center;
-  background-size: auto;
-  position: relative;
-  color: #444444;
-  font-family: "Open Sans", sans-serif;
-}
-
-a {
-  color: #cc1616;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #e82d2d;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Raleway", sans-serif;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
+  height: calc(100vh - 110px);
   margin: auto;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/hero-bg.jpg") top center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.form-signin, .form-signup {
   background-color: #f5f5f5;
+  width: 350px;
+  padding: 10px 15px;
+  margin: auto;
+}
+
+.f-btn {
+  width: 50%;
+  background: #cc1616;
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.f-btn:hover {
+  background: #e82d2d;
 }
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form-floating{
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.form-signup .form-floating:focus-within {
+  z-index: 2;
 }
+
 
 /*.shadow {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
