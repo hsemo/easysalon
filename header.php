@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login</title>
+  <title><?php echo $title; ?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,6 +27,16 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/style2.css" rel="stylesheet">
+
+  <!-- Extra CSS Files -->
+  <?php
+  if(!isset($links)){
+    $links = array();
+  }
+  foreach($links as $lnk){
+    echo "<link href=\"$lnk\" rel=\"stylesheet\">";
+  }
+  ?>
 
 <body>
   <!-- ======= Top Bar ======= -->
@@ -55,11 +65,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="index.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.php#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
           <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="login.php">Login</a></li>
-          <li><a class="nav-link scrollto" href="registration.php">Register</a></li>
+          <li><a class="nav-link scrollto<?php if($active == 'login'){echo " active";} ?>" href="login.php">Login</a></li>
+          <li><a class="nav-link scrollto<?php if($active == 'registration'){echo " active";} ?>" href="registration.php">Register</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

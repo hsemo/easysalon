@@ -1,4 +1,7 @@
 <?php
+// session_start();
+$title = "Easy Salon";
+$active = '';
 include("header.php");
 ?>
 

@@ -1,4 +1,6 @@
 <?php
+$title = 'Login';
+$active = 'login';
 include("header.php");
 ?>
 
@@ -17,6 +19,7 @@ include("header.php");
         Please enter your Email.
       </div>
     </div>
+
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" required placeholder="Enter your password">
       <label for="floatingPassword">Password</label>
@@ -24,6 +27,13 @@ include("header.php");
         Please enter password.
       </div>
     </div>
+
+    <!-- <div class="padding d-flex justify-content-center">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me" >
+        <label for="remember-me" class="form-check-label">Remember me</label>
+      </div>
+    </div> -->
 
     <div class="d-flex justify-content-center">
       <button class="f-btn rounded" type="submit">Login</button>
