@@ -23,6 +23,7 @@
 .f-btn {
   width: 50%;
   background: #cc1616;
+  text-align: center;
   border: 0;
   padding: 10px 24px;
   color: #fff;
@@ -30,6 +31,7 @@
 }
 
 .f-btn:hover {
+  color: #fff;
   background: #e82d2d;
 }
 

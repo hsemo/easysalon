@@ -1,10 +1,10 @@
 <?php
 $title = 'Appointment';
 $active = ''; // for active section either login or registration
-$links = array(
+// $links = array(
 // 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
-'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css'
-);
+// 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css'
+// );
 include("header.php");
 ?>
 
@@ -34,19 +34,19 @@ include("header.php");
 
 <?php
 // for adding extra js scripts
-$scripts = array(
+// $scripts = array(
 // 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
-'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js',
-'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js',
-'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'
-);
+// 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js',
+// 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js',
+// 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'
+// );
 
-$script = "
-\$(function () {
-  \$('#datetimepicker').datetimepicker({
-      format: 'hh:mm a'
-  });
-});
-";
+// $script = "
+// \$(function () {
+//   \$('#datetimepicker').datetimepicker({
+//       format: 'hh:mm a'
+//   });
+// });
+// ";
 include("footer.php");
 ?>
