@@ -15,14 +15,21 @@ if($con->connect_errno){
   die();
 }
 
+// closes the connection to database
+function con_close(){
+  global $con;
+  $con->close();
+}
+
 // for checking error in executed mysql queries
 function check_error(){
   global $con;
   global $sql;
   if($con->errno){
     header("Location: error.php?errno=$con->errno&error=$con->error and Query: $sql");
-    $con->close();
+    con_close();
     die();
   }
 }
+
 ?>

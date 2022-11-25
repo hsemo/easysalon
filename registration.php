@@ -1,4 +1,5 @@
 <?php
+require('dbcon.php');
 $submit = isset($_POST['submit']);
 $error = false;
 
@@ -46,7 +47,7 @@ if($submit){
     $error = true;
   }
   else {
-    require('dbcon.php');
+    // require('dbcon.php');
 
     $sql = "SELECT * FROM users WHERE email='$email';";
 
@@ -58,7 +59,7 @@ if($submit){
       $erremail = "Please enter a different email, this email is registered.";
     }
 
-    $con->close();
+    // $con->close();
   }
 
   if(trim($pass) == '' || trim($cpass) == ''){
@@ -75,17 +76,19 @@ if($submit){
 
 // inserting data into database if everything is fine
 if($submit && !$error){
-  require('dbcon.php');
+  // require('dbcon.php');
 
   $md5pass = md5($pass);
   $sql = "INSERT INTO users(name, email, password) VALUES('$fname $lname', '$email', '$md5pass');";
   if($con->query($sql) === TRUE){
     header('Location: registration_success.php');
+    con_close();
     die();
   }else{
+    con_close();
     die("[ERROR]: Something wrong with inserting data into database.</br>".$con->errno." ".$con->error."</br>");
   }
-  $con->close();
+  con_close();
 }
 ?>
 

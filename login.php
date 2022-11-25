@@ -1,5 +1,6 @@
 <?php
-$err = '';
+$email = '';
+$pass = '';
 if(isset($_POST['submit'])){
   require('dbcon.php');
 
@@ -15,12 +16,12 @@ if(isset($_POST['submit'])){
       $err = 'is-invalid';
     }
   } else{
-    $err = 'is-invalid';
+      $err = 'is-invalid';
   }
-  $con->close();
+  con_close();
 }
 
-if($err == ''){
+if(isset($_POST['submit']) && $err == ''){
   header('Location: login_success.php');
   die();
 }
