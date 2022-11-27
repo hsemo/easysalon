@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errno = $_GET['errno'];
 $error = $_GET['error'];
 

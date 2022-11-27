@@ -1,6 +1,15 @@
 <?php
+session_name('EASYSALON');
+session_start();
+
+// checking if the user is already logged in
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
+  header("Location: index.php");
+}
+
 $email = '';
 $pass = '';
+$err = '';
 if(isset($_POST['submit'])){
   require('dbcon.php');
 
@@ -8,12 +17,15 @@ if(isset($_POST['submit'])){
   $pass = trim($_POST['pass']);
   $md5pass = md5($pass);
 
-  if($email != '' && $pass != '') {
+  if($email != '' && $pass != ''){
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$md5pass';";
-    $result = $con->query($sql);
-    check_error();
+    $result = query($sql);
     if($result->num_rows < 1){
       $err = 'is-invalid';
+    }else{
+      $_SESSION['logged_in'] = true;
+      if(isset($_POST['remember_me']) && $_POST['remember_me'] == 'on')
+        setcookie(session_name(), session_id(), time()+(60*60*24*7), '/');
     }
   } else{
       $err = 'is-invalid';
@@ -22,7 +34,7 @@ if(isset($_POST['submit'])){
 }
 
 if(isset($_POST['submit']) && $err == ''){
-  header('Location: login_success.php');
+  header('Location: index.php');
   die();
 }
 
@@ -37,7 +49,7 @@ if(isset($_POST['submit']) && $err == ''){
   ?>
 </head>
 <body>
-  
+
 <?php
 $active = 'login';
 include("nav.php");
@@ -46,7 +58,14 @@ include("nav.php");
   <!-- <form class="needs-validation" action="login.php" method="post" novalidate> -->
   <form action="login.php" method="post" class="form-signin border rounded shadow-lg">
     <div class="d-flex justify-content-center">
-      <h1 class="h3 fw-normal">Login to continue</h1>
+      <?php
+      if(isset($_SESSION['login_msg']))
+        echo "<p class=\"h5\">".$_SESSION['login_msg']."</p>";
+      else
+        echo "<p class=\"h3\">Login to continue</p>";
+
+      unset($_SESSION['login_msg']);
+      ?>
     </div>
     <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
 
@@ -66,12 +85,12 @@ include("nav.php");
       </div>
     </div>
 
-    <!-- <div class="padding d-flex justify-content-center">
+    <div class="padding d-flex justify-content-center">
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me" >
+        <input type="checkbox" class="form-check-input" id="remember-me" name="remember_me" >
         <label for="remember-me" class="form-check-label">Remember me</label>
       </div>
-    </div> -->
+    </div>
 
     <div class="d-flex justify-content-center">
       <button class="f-btn rounded" type="submit" name="submit">Login</button>

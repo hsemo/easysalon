@@ -33,8 +33,25 @@ if(!isset($active)){
       <li><a class="nav-link scrollto" href="index.php#hero">Home</a></li>
       <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
       <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
+
+      <?php
+      // ----------------- checking if the user is logged in or not
+      if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
+      ?>
+
+      <li><a class="nav-link scrollto" href="my_appointments.php">My Appointments</a></li>
+      <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
+
+      <?php
+      } else{
+      ?>
+
       <li><a class="nav-link scrollto<?php if($active == 'login'){echo " active";} ?>" href="login.php">Login</a></li>
       <li><a class="nav-link scrollto<?php if($active == 'registration'){echo " active";} ?>" href="registration.php">Register</a></li>
+
+      <?php
+      }
+      ?>
     </ul>
     <i class="bi bi-list mobile-nav-toggle"></i>
   </nav><!-- .navbar -->

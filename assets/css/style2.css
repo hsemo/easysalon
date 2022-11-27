@@ -20,6 +20,13 @@
   margin: auto;
 }
 
+/*adjust form position on mobile devices*/
+@media screen and (max-width: 768px) {
+  .form-signin, .form-signup{
+    margin-top: 100px;
+  }
+}
+
 .f-btn {
   width: 50%;
   background: #cc1616;

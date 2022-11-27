@@ -32,4 +32,18 @@ function check_error(){
   }
 }
 
+function query($qry){
+  global $con;
+
+  $result = $con->query($qry);
+  // error checking 
+  if($con->errno){
+    header("Location: error.php?errno=$con->errno&error=$con->error and Query: $qry");
+    con_close();
+    die();
+  }
+
+  return $result;
+}
+
 ?>

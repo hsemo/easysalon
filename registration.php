@@ -1,4 +1,12 @@
 <?php
+session_name('EASYSALON');
+session_start();
+
+// checking if the user is already logged in
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
+  header("Location: index.php");
+}
+
 require('dbcon.php');
 $submit = isset($_POST['submit']);
 $error = false;
@@ -47,8 +55,6 @@ if($submit){
     $error = true;
   }
   else {
-    // require('dbcon.php');
-
     $sql = "SELECT * FROM users WHERE email='$email';";
 
     $result = $con->query($sql);
