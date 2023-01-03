@@ -1,32 +1,42 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$passw = "";
-$db = 'easysalon';
-// $db = '';
-// $port = '';
 
-// $con = new mysqli($host, $user, $pass, $db);
-$con = mysqli_connect($host, $user, $passw, $db);
+// global connection object uninitialized
+$con = 0;
+$root = "/phpCode/phpProjects/easysalon";
 
-// checking connection error
-if($con->connect_errno){
-  header("Location: error.php?errno=$con->connect_errno&error=$con->connect_error");
-  die();
+function create_con($host = 'localhost', $user = 'root', $passw = "", $db = 'easysalon', $port = '3306'){
+  global $con;
+  global $root;
+  if($con == 0){
+    $con = mysqli_connect($host, $user, $passw, $db);
+    // checking connection error
+    if($con->connect_errno){
+      $errno = $con->connect_errno;
+      $error = urlencode($con->connect_error);
+      header("Location: $root/error.php?errno={$errno}&error={$error}");
+      die();
+    }
+  }
 }
+
 
 // closes the connection to database
 function con_close(){
   global $con;
   $con->close();
+  $con = 0;
 }
 
 // for checking error in executed mysql queries
 function check_error(){
   global $con;
   global $sql;
+  global $root;
+
   if($con->errno){
-    header("Location: error.php?errno=$con->errno&error=$con->error and Query: $sql");
+    $errno = $con->errno;
+    $error = urlencode($con->error);
+    header("Location: $root/error.php?errno={$errno}&error={$error}");
     con_close();
     die();
   }
@@ -34,11 +44,14 @@ function check_error(){
 
 function query($qry){
   global $con;
+  global $root;
 
   $result = $con->query($qry);
-  // error checking 
+  // error checking
   if($con->errno){
-    header("Location: error.php?errno=$con->errno&error=$con->error and Query: $qry");
+    $errno = $con->errno;
+    $error = urlencode($con->error);
+    header("Location: $root/error.php?errno={$errno}&error={$error}");
     con_close();
     die();
   }
@@ -46,4 +59,5 @@ function query($qry){
   return $result;
 }
 
+create_con();
 ?>

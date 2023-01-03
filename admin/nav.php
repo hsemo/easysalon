@@ -30,27 +30,32 @@ if(!isset($active)){
 
   <nav id="navbar" class="navbar">
     <ul>
-      <li><a class="nav-link scrollto" href="index.php#hero">Home</a></li>
-      <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
-      <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
+      <li><a class="nav-link scrollto<?php if($active == 'home'){echo " active";} ?>" href="index.php">Home</a></li>
 
       <?php
       // ----------------- checking if the user is logged in or not
       if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
       ?>
-
       <li class="dropdown">
-        <a href="#" class="<?php if(strchr($active, 'appointment')){echo " active";} ?>">
-          <span>Appointments</span>
+        <a href="#" class="<?php if(strchr($active, 'salon')){echo " active";} ?>">
+          <span>Salon</span>
           <i class="bi bi-chevron-down"></i>
         </a>
-
         <ul>
-        <li><a class="nav-link scrollto<?php if($active == 'make_appointment'){echo " active";} ?>" href="appointment.php">Make Appointment</a></li>
-        <li><a class="nav-link scrollto<?php if($active == 'cancel_appointment'){echo " active";} ?>" href="cancel_apntmnt.php">Cancel Appointment</a></li>
-        <li><a class="nav-link scrollto<?php if($active == 'my_appointments'){echo " active";} ?>" href="view_apntmnts.php">My Appointments</a></li>
+          <li><a class="nav-link scrollto<?php if($active == 'addsalon'){echo " active";} ?>" href="add.php">Add Salon</a></li>
+          <li><a class="nav-link scrollto<?php if($active == 'rmvsalon'){echo " active";} ?>" href="rmv.php">Remove Salon</a></li>
+          <li><a class="nav-link scrollto<?php if($active == 'viewsalon'){echo " active";} ?>" href="view.php">View Salons</a></li>
         </ul>
       </li>
+      <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+        <ul>
+          <li><a href="#">Drop Down 1</a></li>
+          <li><a href="#">Drop Down 2</a></li>
+          <li><a href="#">Drop Down 3</a></li>
+          <li><a href="#">Drop Down 4</a></li>
+        </ul>
+      </li> -->
+
       <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
 
       <?php
@@ -58,7 +63,6 @@ if(!isset($active)){
       ?>
 
       <li><a class="nav-link scrollto<?php if($active == 'login'){echo " active";} ?>" href="login.php">Login</a></li>
-      <li><a class="nav-link scrollto<?php if($active == 'registration'){echo " active";} ?>" href="registration.php">Register</a></li>
 
       <?php
       }

@@ -1,5 +1,7 @@
 <?php
-session_name('EASYSALON');
+session_name('EASYSALON-ADMIN');
+$prms = session_get_cookie_params();
+session_set_cookie_params($prms['lifetime'], 'admin/', $prms['domain'], $prms['secure'], $prms['httponly']);
 session_start();
 
 // checking if the user is already logged in
@@ -11,23 +13,21 @@ $email = '';
 $pass = '';
 $err = '';
 if(isset($_POST['submit'])){
-  require('dbcon.php');
+  require('../dbcon.php');
 
   $email = trim($_POST['email']);
   $pass = trim($_POST['pass']);
   $md5pass = md5($pass);
 
   if($email != '' && $pass != ''){
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$md5pass';";
+    $sql = "SELECT * FROM admins WHERE email='$email' AND password='$md5pass';";
     $result = query($sql);
     if($result->num_rows < 1){
       $err = 'is-invalid';
     }else{
       $_SESSION['logged_in'] = true;
-      $_SESSION['login_info'] = $result->fetch_assoc();
-      if(isset($_POST['remember_me']) && $_POST['remember_me'] == 'on'){
-        setcookie(session_name(), session_id(), time()+(60*60*24*7), '/');
-      }
+      if(isset($_POST['remember_me']) && $_POST['remember_me'] == 'on')
+        setcookie(session_name(), session_id(), time()+(60*60*24*7), 'admin/');
     }
   } else{
       $err = 'is-invalid';
@@ -39,7 +39,9 @@ if(isset($_POST['submit']) && $err == ''){
   header('Location: index.php');
   die();
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,20 +56,23 @@ if(isset($_POST['submit']) && $err == ''){
 $active = 'login';
 include("nav.php");
 ?>
+
 <div class="f-container">
+  <!-- <form class="needs-validation" action="login.php" method="post" novalidate> -->
   <form action="login.php" method="post" class="form-signin border rounded shadow-lg">
     <div class="d-flex justify-content-center">
       <?php
       if(isset($_SESSION['login_msg']))
         echo "<p class=\"h5\">".$_SESSION['login_msg']."</p>";
       else
-        echo "<p class=\"h3\">Login to continue</p>";
+        echo "<p class=\"h3\">Administrator Login</p>";
 
       unset($_SESSION['login_msg']);
       ?>
     </div>
 
     <div class="line mb-3"></div>
+    <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
 
     <div class="form-floating">
       <input type="email" class="form-control <?php echo $err; ?>" name="email" id="floatingEmail" required placeholder="Enter your email" value="<?php echo $email; ?>">
@@ -94,6 +99,7 @@ include("nav.php");
 
     <div class="d-flex justify-content-center">
       <button class="f-btn rounded" type="submit" name="submit">Login</button>
+      <!-- <a class="btn-get-started" type="submit" name="submit">Login</a> -->
     </div>
   </form>
 </div>

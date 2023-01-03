@@ -7,7 +7,6 @@ session_start();
 <html lang="en">
   <head>
     <?php
-    // session_start();
     $title = "Easy Salon";
     $active = '';
     include("header.php");

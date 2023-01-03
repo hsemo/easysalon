@@ -82,7 +82,6 @@ if($submit){
 
 // inserting data into database if everything is fine
 if($submit && !$error){
-  // require('dbcon.php');
 
   $md5pass = md5($pass);
   $sql = "INSERT INTO users(name, email, password) VALUES('$fname $lname', '$email', '$md5pass');";
@@ -118,6 +117,8 @@ include("nav.php");
     <div class="d-flex justify-content-center">
       <h1 class="h3 fw-normal">Register to continue</h1>
     </div>
+
+    <div class="line mb-3"></div>
 
     <div class="d-flex">
       <div class="form-floating">
