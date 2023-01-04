@@ -59,6 +59,7 @@ if(!isset($active)){
 
       <li><a class="nav-link scrollto<?php if($active == 'login'){echo " active";} ?>" href="login.php">Login</a></li>
       <li><a class="nav-link scrollto<?php if($active == 'registration'){echo " active";} ?>" href="registration.php">Register</a></li>
+      <li><a class="nav-link scrollto" href="admin/login.php">Admin Login</a></li>
 
       <?php
       }

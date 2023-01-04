@@ -4,7 +4,7 @@
 $con = 0;
 $root = "/phpCode/phpProjects/easysalon";
 
-function create_con($host = 'localhost', $user = 'root', $passw = "", $db = 'easysalon', $port = '3306'){
+function create_con($host = 'localhost', $user = 'root', $passw = "", $db = 'easysalon'){
   global $con;
   global $root;
   if($con == 0){

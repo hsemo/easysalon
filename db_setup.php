@@ -7,7 +7,7 @@
 require("dbcon.php");
 
 con_close();
-create_con($db='');
+create_con('localhost', 'root', '', '');
 
 // database creation
 $qry = "CREATE DATABASE easysalon;";
@@ -35,6 +35,12 @@ $qry = "CREATE TABLE admins LIKE users;";
 $result = query($qry);
 echo "admins table created.</br>";
 
+// inserting data into admin table
+$pass_md5 = md5('admin');
+$qry = "INSERT INTO admins VALUES(default,'admin','admin@gmail.com','$pass_md5');";
+$result = query($qry);
+echo "Admin data inserted.</br>Admin Login Email: admin@gmail.com</br>Admin Login Password: admin</br>";
+
 // salons table creation
 $qry = "CREATE TABLE salons(
 id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -42,7 +48,7 @@ salon_name VARCHAR(200) NOT NULL,
 address VARCHAR(100) NOT NULL,
 owner_name VARCHAR(30) NOT NULL,
 mobile VARCHAR(10) NOT NULL,
-CONSTRAINT U_name UNIQUE (name)
+CONSTRAINT U_name UNIQUE (salon_name)
 );";
 $result = query($qry);
 echo "salons table created.</br>";

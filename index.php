@@ -41,11 +41,10 @@ session_start();
 
         <div class="row d-flex align-items-center justify-content-center">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-up"> -->
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="">Hair Cut</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p>Make your hair stylish that will eventually make your personality influential.</p>
             </div>
           </div>
 
